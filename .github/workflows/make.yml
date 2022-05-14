@@ -14,5 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: install-dependancies
+      run : apt install nasm xorriso gcc
+    
     - name: build
       run : make build-x86_64

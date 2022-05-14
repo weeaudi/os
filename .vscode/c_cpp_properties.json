@@ -4,7 +4,6 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "\\\\wsl.localhost\\Ubuntu-20.04\\usr\\lib\\gcc\\x86_64-linux-gnu\\9\\include\\**",
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/include"
             ],

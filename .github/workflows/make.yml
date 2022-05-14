@@ -7,15 +7,22 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  install:
+  
+  runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     
     - name: install-dependancies
       run : sudo apt install nasm xorriso gcc grub-pc grub-pc-bin mtools
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
     
     - name: build
       run : make build-x86_64

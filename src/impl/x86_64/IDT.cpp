@@ -94,6 +94,6 @@ extern "C" void isr1_handler()
         }
     }
     //print_str(HexToString(scancode));
-    outba(0x20, 0x20);
+    outb(0x20, 0x20);
     outb(0xa0, 0x20);
 }

@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: install-dependancies
-      run : sudo apt install nasm xorriso gcc grub-pc grub-pc-bin mformat
+      run : sudo apt install nasm xorriso gcc grub-pc grub-pc-bin mtools
     
     - name: build
       run : make build-x86_64

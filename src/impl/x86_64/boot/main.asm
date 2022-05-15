@@ -14,7 +14,6 @@ start:
 	call enable_paging
 
 	lgdt [gdt64.pointer]
-	lidt [gdt64.pointer]
 	jmp gdt64.code_segment:long_mode_start
 
 	hlt

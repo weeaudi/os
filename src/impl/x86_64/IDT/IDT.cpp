@@ -8,6 +8,7 @@ extern "C" void print_str(char *charecter);
 extern "C" void print_newline();
 extern void outb(unsigned short port, unsigned char data);
 extern unsigned char inb(unsigned short port);
+extern void run_command();
 
 char hexToStringOutput[128];
 template <typename T>
@@ -67,7 +68,7 @@ extern "C" void isr1_handler()
     uint8_t scancode = inb(0x60);
     int len = *(&KBSet1::ScanCodeLookupTable + 1) - KBSet1::ScanCodeLookupTable;
     if (scancode == 0x1C){
-        print_newline();
+        run_command();
         outb(0x20, 0x20);
         outb(0xa0, 0x20);
         return;

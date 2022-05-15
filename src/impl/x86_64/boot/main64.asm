@@ -12,5 +12,6 @@ long_mode_start:
     mov fs, ax
     mov gs, ax
 	call kernel_main
+    ;Exit (for good measure and in case of failure)
 	hlt
 	

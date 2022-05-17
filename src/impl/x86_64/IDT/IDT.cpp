@@ -80,7 +80,7 @@ char *append(char* inputlist, char charec) {
 }
 
 uint8_t shift = 0x00;
-char *inputcmd;
+char *inputcmd = (char*) "";
 
 extern "C" void isr1_handler()
 {
@@ -88,6 +88,7 @@ extern "C" void isr1_handler()
     int len = *(&KBSet1::ScanCodeLookupTable + 1) - KBSet1::ScanCodeLookupTable;
     if (scancode == 0x1C){
         run_command(inputcmd);
+        inputcmd = (char*) "";
         outb(0x20, 0x20);
         outb(0xa0, 0x20);
         return;

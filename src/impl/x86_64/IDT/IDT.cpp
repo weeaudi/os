@@ -43,7 +43,7 @@ struct IDT64
     uint32_t offset_high;
     uint32_t zero;
 };
-struct IDT64 _idt[256];
+extern struct IDT64 _idt[256];
 extern uint64_t isr1;
 extern "C" void loadIDT();
 extern void RemapPic();

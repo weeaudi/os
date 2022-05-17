@@ -45,7 +45,7 @@ struct IDT64
 };
 extern struct IDT64 _idt[256];
 extern uint64_t isr1;
-extern "C" void loadIDT();
+extern "" void loadIDT();
 extern void RemapPic();
 
 void InitilizeIDT()

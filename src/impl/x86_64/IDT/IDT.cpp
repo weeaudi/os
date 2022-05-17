@@ -1,6 +1,8 @@
 #include <stdint.h>
 #include <stddef.h>
 #include "KBScanCodeSet1.cpp"
+#include <string>
+#include <cstring>
 
 extern "C" void InitilizeIDT();
 extern "C" void print_char(char charecter);
@@ -8,7 +10,7 @@ extern "C" void print_str(char *charecter);
 extern "C" void print_newline();
 extern void outb(unsigned short port, unsigned char data);
 extern unsigned char inb(unsigned short port);
-extern void run_command();
+extern void run_command(char* cmd);
 
 char hexToStringOutput[128];
 template <typename T>
@@ -62,13 +64,30 @@ void InitilizeIDT()
     outb(0xa1, 0xff);
     loadIDT();
 }
+
+char *tmp;
+
+char *append(char* inputlist, char charec) {
+    for (size_t i = 0; 1; i++) {
+        char chara = inputlist[i];
+		tmp[i] = chara;
+        if (chara == '\0') {
+            tmp[i] = charec;
+			tmp[i+1] = '\0';
+			return tmp;
+        }
+    }
+}
+
 uint8_t shift = 0x00;
+char *inputcmd;
+
 extern "C" void isr1_handler()
 {
     uint8_t scancode = inb(0x60);
     int len = *(&KBSet1::ScanCodeLookupTable + 1) - KBSet1::ScanCodeLookupTable;
     if (scancode == 0x1C){
-        run_command();
+        run_command(inputcmd);
         outb(0x20, 0x20);
         outb(0xa0, 0x20);
         return;
@@ -85,13 +104,17 @@ extern "C" void isr1_handler()
     {
         if (scancode < len)
         {
+			inputcmd = append(inputcmd, KBSet1::ScanCodeLookupTable[scancode]);
             print_char(KBSet1::ScanCodeLookupTable[scancode]);
+			
         }
     }
     if ((shift == 0xAA) & (scancode != 0x2A) & (scancode != 0x36)){
         if (scancode < len)
         {
+			inputcmd = append(inputcmd, KBSet1::ShiftScanCodeLookupTable[scancode]);
             print_char(KBSet1::ShiftScanCodeLookupTable[scancode]);
+			
         }
     }
     //print_str(HexToString(scancode));

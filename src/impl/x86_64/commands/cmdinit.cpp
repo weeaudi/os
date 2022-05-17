@@ -13,7 +13,9 @@ void cmdinit(char input_char)
     print_char(input_char);
 }
 
-void run_command(){
+void run_command(char *incmd){
+	print_newline();
+	print_str(incmd);
     print_newline();
     print_char(input_charecter);
 }

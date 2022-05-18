@@ -22,9 +22,6 @@ void cmdinit(char input_char)
 command current;
 
 void run_command(char *incommand){
-	print_newline();
-	print_str(incommand);
-	print_newline();
 	int len = *(&commands + 1) - commands;
 	for (int k = 0; k < len; k++){
 		current = (command) commands[k];
@@ -38,6 +35,13 @@ void run_command(char *incommand){
 			s2len++;
 		}
 		if(s1len == s2len){
+			for (int l = 0; l < s1len; l++){
+				if(command_name[l] != incommand[l]){
+    				print_char(input_charecter);
+					return;
+				}
+			}
+			print_newline();
 			current.run();
 		}
 	}

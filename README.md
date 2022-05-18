@@ -4,6 +4,5 @@
 
 this is my first operating system project!
 
-This is the testing branch!
+This operating system will be able to run windows and linux at the same time
 
-this is for testing the next push to master

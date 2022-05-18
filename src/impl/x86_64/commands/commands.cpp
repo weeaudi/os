@@ -1,21 +1,29 @@
 //this is where the commands will be defined
+#include "cmd.hpp"
+
 
 extern "C" void print_str(char *string);
 
-struct command{
-	char* name;
-    int run;
-    char *about;
-};
+/*class command {
+	//private:
+    //	std::function<void()> run;
+	
+	public:
+		void (* run)();
+		char *name;
+		char *about;
+		void set_command(char *inname, void function(), char *inabout){
+			//std::function<void()> run;
+			name = name;
+			run = function;
+			about = inabout;
+		};
+};*/
 
-int help_run(){print_str((char*) "Hello this is the W.I.P help page!");return 0;}
+void help_run(){print_str((char*) "Hello this is the W.I.P help page!");return;}
 
-struct command commands[1];
+command commands[1];
+
 void commands_init(){
-	command help{
-		name: (char*) "help",
-		run : help_run(),
-		about: (char*) "testing"
-	};
-	commands[0] = help;
+	commands[0].set_command((char*) "help", help_run, (char*) "testing");
 }

@@ -15,7 +15,7 @@ void cmdinit(char input_char)
 
 void run_command(char *incmd){
 	print_newline();
-	print_str(incmd);
+	commands[incmd].run()
     print_newline();
     print_char(input_charecter);
 }

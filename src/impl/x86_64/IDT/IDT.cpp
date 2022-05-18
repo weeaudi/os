@@ -30,6 +30,11 @@ char *HexToString(T value)
         hexToStringOutput[size - (i * 2 + 0)] = temp + (temp > 9 ? 55 : 48);
     }
     hexToStringOutput[size + 1] = 0;
+    delete temp;
+    delete size;
+    delete ptr;
+    delete valPtr;
+    delete i;
     return hexToStringOutput;
 }
 

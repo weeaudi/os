@@ -1,16 +1,14 @@
+#include "cmd.hpp"
+
 extern "C" void cmdinit(char input_char);
 extern "C" void print_str(char* string);
 extern "C" void print_char(char charecter);
 extern "C" void print_newline();
 extern void commands_init();
 
-struct command{
-	char* name;
-    int run;
-    char *about;
-};
 
 extern command commands[1];
+
 
 char input_charecter = '/';
 
@@ -23,12 +21,24 @@ void cmdinit(char input_char)
 
 command current;
 
-void run_command(char *incmd){
+void run_command(char *incommand){
 	print_newline();
-	for (int k = 0; k < 1; k++){
+	print_str(incommand);
+	print_newline();
+	int len = *(&commands + 1) - commands;
+	for (int k = 0; k < len; k++){
 		current = (command) commands[k];
-		if((current.name) == incmd){
-			current.run;
+		char *command_name = current.getname();
+		int s1len = 0;
+		int s2len = 0;
+		for (int i = 0; command_name[i] != '\0';i++){
+			s1len++;
+		}
+		for (int i = 0; incommand[i] != '\0';i++){
+			s2len++;
+		}
+		if(s1len == s2len){
+			current.run();
 		}
 	}
     print_newline();
